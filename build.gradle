@@ -1,0 +1,45 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven {
+        name = "GitHubPackages hadroNIO"
+        url = "https://maven.pkg.github.com/hhu-bsinfo/hadronio"
+        credentials {
+            username = project.findProperty("gpr.user")
+            password = project.findProperty("gpr.token")
+        }
+    }
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+
+    implementation 'de.hhu.bsinfo:hadronio:0.3.1'
+    implementation 'org.openucx:jucx:1.11.2'
+    implementation 'org.agrona:agrona:1.11.0'
+    implementation 'org.apache.logging.log4j:log4j-slf4j-impl:2.14.1'
+
+    compile 'org.apache.ratis:ratis-server:2.2.0'
+    compile 'org.apache.ratis:ratis-netty:2.2.0'
+}
+
+jar {
+    manifest {
+        attributes "Main-Class": "CounterServer"
+    }
+
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+test {
+    useJUnitPlatform()
+}

@@ -1,0 +1,25 @@
+<Configuration status="warn">
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%highlight{[%d{HH:mm:ss.SSS}][%t{4}][%level{WARN=WRN, DEBUG=DBG, ERROR=ERR, TRACE=TRC, INFO=INF, FATAL=FAT}][%c{1}] %msg%n}{FATAL=red, ERROR=red, WARN=yellow, INFO=blue, DEBUG=green, TRACE=white}"/>
+        </Console>
+
+        <Async name="ConsoleAsync" bufferSize="500">
+            <AppenderRef ref="Console"/>
+        </Async>
+    </Appenders>
+
+    <Loggers>
+        <Root level="error">
+            <AppenderRef ref="ConsoleAsync"/>
+        </Root>
+
+        <Logger name="de.hhu.bsinfo" level="info" additivity="false">
+            <AppenderRef ref="ConsoleAsync" />
+        </Logger>
+
+        <Logger name="org.apache.ratis.server" level="info" additivity="false">
+            <AppenderRef ref="ConsoleAsync" />
+        </Logger>
+    </Loggers>
+</Configuration>

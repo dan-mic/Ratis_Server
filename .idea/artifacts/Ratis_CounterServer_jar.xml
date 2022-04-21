@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Ratis_CounterServer:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Ratis_CounterServer_jar</output-path>
+    <root id="archive" name="Ratis_Server.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/src/main/META-INF/MANIFEST.MF" />
+      </element>
+    </root>
+  </artifact>
+</component>
