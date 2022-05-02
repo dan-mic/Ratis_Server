@@ -1,1 +1,1 @@
-java -jar build/libs/Ratis_Server-1.0-SNAPSHOT.jar $1 $2:6000 $3:6001 $4:6002 $5
+java -jar build/libs/Ratis_Server-1.0.1-SNAPSHOT.jar $1 $2 $3 $4 $5
